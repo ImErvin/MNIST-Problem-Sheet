@@ -26,7 +26,8 @@ The set of images in the MNIST database is a combination of two of NIST's databa
 	Use Python to output the image files as PNGs, saving them in a subfolder in your repository. 
     Name the images in the format train-XXXXX-Y.png or test-XXXXX-Y.png where XXXXX is the image number 
     (where it occurs in the data file) and Y is its label. 
-    For instance, the five-thousandth training image is labelled 2, so its file name should be train-05000-2.png. Commit these image files to GitHub.
+    For instance, the five-thousandth training image is labelled 2, so its file name should be train-05000-2.png.
+    Commit these image files to GitHub.
 
 ### References
 [1] [Wikipedia](https://en.wikipedia.org/wiki/MNIST_database)

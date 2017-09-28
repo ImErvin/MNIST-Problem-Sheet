@@ -23,18 +23,18 @@ try:
     for i in range(4):
         byte = f.read(4)
         print (int.from_bytes(byte, byteorder="big"))
-
-    for i in range(784):
-        i = i + 1
-        # Do stuff with byte.
-        byte = f.read(4)
-        if(int.from_bytes(byte, byteorder="big") > 0):
-            print("#", end=" ")
-        else:
-            print(".", end=" ")
-        
-        # print (int.from_bytes(byte, byteorder="big"))
-        if(i % 28 == 0):
-            print("\n")
+    for k in range(6000):
+        for i in range(784):
+            i = i + 1
+            # Do stuff with byte.
+            byte = f.read(1)
+            if(int.from_bytes(byte, byteorder="big") > 0):
+                print("#", end=" ")
+            else:
+                print(".", end=" ")
+            
+            # print (int.from_bytes(byte, byteorder="big"))
+            if(i % 28 == 0):
+                print("\n")
 finally:
     f.close()

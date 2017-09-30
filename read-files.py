@@ -11,6 +11,8 @@
 #         - https://stackoverflow.com/questions/10668341/create-3d-array-using-python
 #       Saving as PNG image   
 #         - https://stackoverflow.com/questions/902761/saving-a-numpy-array-as-an-image
+#       Saving as PNG image
+#         - https://stackoverflow.com/questions/4711880/pil-using-fromarray-with-binary-data-and-writing-coloured-text
 
 # Importing gzip to unzip a gz compressed files.
 import gzip
@@ -125,11 +127,10 @@ def print_image(pixel_list):
             else:
                 print("#", end="")
 
-def save_image(pixel_list):
+def save_image(pixel_list, label):
     pixel_array = numpy.array(pixel_list)
-    image = Image.fromarray(pixel_array)
-    image.show()
-    image.save("images/test.png")
+    image = Image.fromarray(pixel_array).convert("RGB")
+    image.save("images/test%d.png"%label)
 
 # List of labels for the training images.
 training_labels = read_labels("data/train-labels-idx1-ubyte.gz")
@@ -142,5 +143,9 @@ testing_images = read_images("data/t10k-images-idx3-ubyte.gz")
 
 # Call the print_image function to print out the 3rd image to the screen
 print_image(training_images[2])
-print("\n")
-save_image(training_images[2])
+
+#save_image(training_images[2])
+j = 0
+for i in range(-1,len(training_images),1):
+    save_image(training_images[i], j)
+    j = j + 1

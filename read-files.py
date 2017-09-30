@@ -1,12 +1,23 @@
 # Read files written by Ervin Mamutov, github/imervin
 
 # Adapated code from
-#       https://stackoverflow.com/questions/12902540/read-from-a-gzip-file-in-python
-#       https://stackoverflow.com/questions/2872381/how-to-read-a-file-byte-by-byte-in-python-and-how-to-print-a-bytelist-as-a-binar
-#       https://stackoverflow.com/questions/1035340/reading-binary-file-and-looping-over-each-byte
-#       https://stackoverflow.com/questions/10668341/create-3d-array-using-python
+#       Unzip gz files        
+#        - https://stackoverflow.com/questions/12902540/read-from-a-gzip-file-in-python
+#       Read bytes from files 
+#         - https://stackoverflow.com/questions/2872381/how-to-read-a-file-byte-by-byte-in-python-and-how-to-print-a-bytelist-as-a-binar
+#       Read bytes from files 
+#         - https://stackoverflow.com/questions/1035340/reading-binary-file-and-looping-over-each-byte
+#       Create 3D array       
+#         - https://stackoverflow.com/questions/10668341/create-3d-array-using-python
+#       Saving as PNG image   
+#         - https://stackoverflow.com/questions/902761/saving-a-numpy-array-as-an-image
 
+# Importing gzip to unzip a gz compressed files.
 import gzip
+# Importing numpy to convert lists into arrays.
+import numpy as numpy
+# Importing PIL to convert arrays into images.
+from PIL import Image
 
 # f = gzip.open('data/train-images-idx3-ubyte.gz', 'rb')
 
@@ -114,6 +125,12 @@ def print_image(pixel_list):
             else:
                 print("#", end="")
 
+def save_image(pixel_list):
+    pixel_array = numpy.array(pixel_list)
+    image = Image.fromarray(pixel_array)
+    image.show()
+    image.save("images/test.png")
+
 # List of labels for the training images.
 training_labels = read_labels("data/train-labels-idx1-ubyte.gz")
 # List of pixels representing the training images.
@@ -125,3 +142,5 @@ testing_images = read_images("data/t10k-images-idx3-ubyte.gz")
 
 # Call the print_image function to print out the 3rd image to the screen
 print_image(training_images[2])
+print("\n")
+save_image(training_images[2])

@@ -13,6 +13,8 @@
 #         - https://stackoverflow.com/questions/902761/saving-a-numpy-array-as-an-image
 #       Saving as PNG image
 #         - https://stackoverflow.com/questions/4711880/pil-using-fromarray-with-binary-data-and-writing-coloured-text
+#       Padding 0s to image file name
+#         - https://stackoverflow.com/questions/339007/nicest-way-to-pad-zeroes-to-string
 
 # Importing gzip to unzip a gz compressed files.
 import gzip
@@ -61,8 +63,10 @@ def read_labels(file):
         with gzip.open(file) as f:
             # Magic number - *Expected to be 2049*
             magic_num = int.from_bytes(f.read(4), byteorder="big")
+
             # Number of Labels - *Expected to be 60000 training file labels & 10000 testing file labels*
             no_labels = int.from_bytes(f.read(4), byteorder="big")
+
             # Print out file details.
             # If parsed correctly, the values should be the same as the values expected.
             print("File:",file,"\nMagic number: \t\t%10d\nNumber of Images: \t%10d\n"%(magic_num,no_labels))
@@ -86,12 +90,16 @@ def read_images(file):
         with gzip.open(file) as f:
             # Magic number - *Expected to be 2051*
             magic_num = int.from_bytes(f.read(4), byteorder="big")
+
             # Number of images - *Expected to be 60000 training files & 10000 testing files*
             no_images = int.from_bytes(f.read(4), byteorder="big")
+
             # Number of rows - *Expected to be 28*
             no_rows = int.from_bytes(f.read(4), byteorder="big")
+
             # Number of columns - *Expected to be 28*
             no_cols = int.from_bytes(f.read(4), byteorder="big")
+
             # Print out file details.
             # If parsed correctly, the values should be the same as the expected.
             print("File:",file,"\nMagic number: \t\t%10d\nNumber of Images: \t%10d\nNumber of Rows: \t%10d\nNumber of Columns: \t%10d\n" %(magic_num,no_images,no_rows,no_rows))
@@ -127,14 +135,38 @@ def print_image(pixel_list):
             else:
                 print("#", end="")
 
+# save_image will recieve a list of pixels, an integer index, an integer label and a boolean train_test.
+# These parameters will be used to create the image and the image's file name.
+# Problem sheet states to use the following format:
+# "train-XXXXX-Y.png or test-XXXXX-Y.png where XXXXX is the image number (where it occurs in the data file) and Y is its label."
+# The pixel list is used to read in each value and transfer it into an image using PIL's Image tool.
+# The index is used to indentify where the image number occurs in the datafile (training_images).
+# The label is used to identify the number that is shown in the picture.
+# The train_test is a boolean to determine if the image's are part of the train images or test images.
 def save_image(pixel_list, index, label, train_test):
+    # Instantiate an empty string.
     file_format = ""
+
+    # If the train_test value is true, change the empty string to "train-xxxxx-y" format.
     if(train_test):
+        # Using the string format %05d and %d to add variables to the string.
+        # %05d adds 0s to the left if not enough integers.
         file_format = "images/train-%05d-%d.png"
+    # If the train_test value is false, change the empty string to "test-xxxxx-y" format.
     else:
+        # Using the string format %05d and %d to add variables to the string.
+        # %05d adds 0s to the left if not enough integers.
         file_format = "images/test-%05d-%d.png"
+    
+    # Using numpys .array() function to turn the list into a numpy array.
     pixel_array = numpy.array(pixel_list)
+
+    # Turn the array into an image, using Pillow's Image.fromarray() 
+    # to an image memory from an object exporting the array interface and converting to
+    # "RGB" to save file locally.
     image = Image.fromarray(pixel_array).convert("RGB")
+
+    # Saving the file and inserting the correct variables into the string for the "train/test-xxxxx-y" format.
     image.save(file_format %(index,label))
 
 # List of labels for the training images.
@@ -149,12 +181,10 @@ testing_images = read_images("data/t10k-images-idx3-ubyte.gz")
 # Call the print_image function to print out the 3rd image to the screen
 print_image(training_images[2])
 
-#save_image(training_images[2])
-
+# Loop that starts at 1, the length of training/testing_images+1 and increments by 1.
+# Each iteration will save the image at the current index i - 1 (as the loop starts at 1 and ends at 60).
 for i in range(1,len(training_images)+1,1):
     save_image(training_images[i-1], i, training_labels[i-1], True)
+
 for i in range(1,len(testing_images)+1,1):
     save_image(testing_images[i-1], i, testing_labels[i-1], False)
-
-# for i in range(1,len(training_images)+1,1):
-#     print(i)

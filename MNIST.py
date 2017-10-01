@@ -1,4 +1,4 @@
-# Read files written by Ervin Mamutov, github/imervin
+# MNIST written by Ervin Mamutov, github/imervin
 
 # Adapated code from
 #       Unzip gz files        
@@ -22,38 +22,6 @@ import gzip
 import numpy as numpy
 # Importing PIL to convert arrays into images.
 from PIL import Image
-
-# f = gzip.open('data/train-images-idx3-ubyte.gz', 'rb')
-
-# initialByte = f.read(1)
-
-# print (int.from_bytes(initialByte, byteorder="big"))
-
-# f.close()
-
-# i = 0
-
-# f = gzip.open('data/train-images-idx3-ubyte.gz', 'rb')
-# try:
-#     byte = f.read(0)
-#     for i in range(4):
-#         byte = f.read(4)
-#         print (int.from_bytes(byte, byteorder="big"))
-#     for k in range(6000):
-#         for i in range(784):
-#             i = i + 1
-#             # Do stuff with byte.
-#             byte = f.read(1)
-#             if(int.from_bytes(byte, byteorder="big") > 0):
-#                 print("#", end=" ")
-#             else:
-#                 print(".", end=" ")
-            
-#             # print (int.from_bytes(byte, byteorder="big"))
-#             if(i % 28 == 0):
-#                 print("\n")
-# finally:
-#     f.close()
 
 # The functions (read_labels and read_images) are used to decompress, read and store a file 
 # by passing the file location as a parameter.

@@ -1,7 +1,27 @@
 ## MNIST Problem Sheet
-This is a simple MNIST problem sheet. The aim of this problem sheet is to get a foot in the door and start learning about computer vision.This problem sheet was created by [Ian Mcloughlin](https://github.com/ianmcloughlin) as part of our emerging technologies module in college.
+This is a simple MNIST problem sheet. The aim of this problem sheet is to get a foot in the door and start learning about computer vision. This problem sheet was created by [Ian Mcloughlin](https://github.com/ianmcloughlin) as part of our emerging technologies module in college.
 
 You can find my solutions to each of these problems in this repository.
+
+### How to use this repository
+
+1. Ensure you have Python 3.x and Git installed locally.
+2. Enter the following commands into your command line.
+```bash
+# Change directory to anywhere you desire
+cd anywhere..
+
+# Clone this repository using git
+git clone https://github.com/ImErvin/MNIST-Problem-Sheet.git
+cd MNIST-Problem-Sheet
+
+# Run the setup.py file
+py setup.py
+
+# Once setup.py has finished downloading, run the MNIST.py file
+py MNIST.py
+
+```
 
 ### What is MNIST?
 MNIST(Modified National Institute of Standards and Technology) is a sub data set of NIST(National Institute of Standards and Technology), a large database of handwritten digits. MNIST is used to train image processing systems and is basically the "hello world" of computer vision.

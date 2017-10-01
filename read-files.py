@@ -151,10 +151,10 @@ print_image(training_images[2])
 
 #save_image(training_images[2])
 
-# for i in range(-1,len(training_images),1):
-#     save_image(training_images[i], i, training_labels[i], True)
-# for i in range(-1,len(testing_images),1):
-#     save_image(testing_images[i], i, testing_labels[i], False)
+for i in range(1,len(training_images)+1,1):
+    save_image(training_images[i-1], i, training_labels[i-1], True)
+for i in range(1,len(testing_images)+1,1):
+    save_image(testing_images[i-1], i, testing_labels[i-1], False)
 
-# for i in range(0,len(training_images)+1,1):
-#     print(i-1)
+# for i in range(1,len(training_images)+1,1):
+#     print(i)

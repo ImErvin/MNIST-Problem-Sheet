@@ -127,10 +127,15 @@ def print_image(pixel_list):
             else:
                 print("#", end="")
 
-def save_image(pixel_list, label):
+def save_image(pixel_list, index, label, train_test):
+    file_format = ""
+    if(train_test):
+        file_format = "images/train-%05d-%d.png"
+    else:
+        file_format = "images/test-%05d-%d.png"
     pixel_array = numpy.array(pixel_list)
     image = Image.fromarray(pixel_array).convert("RGB")
-    image.save("images/test%d.png"%label)
+    image.save(file_format %(index,label))
 
 # List of labels for the training images.
 training_labels = read_labels("data/train-labels-idx1-ubyte.gz")
@@ -145,7 +150,11 @@ testing_images = read_images("data/t10k-images-idx3-ubyte.gz")
 print_image(training_images[2])
 
 #save_image(training_images[2])
-j = 0
-for i in range(-1,len(training_images),1):
-    save_image(training_images[i], j)
-    j = j + 1
+
+# for i in range(-1,len(training_images),1):
+#     save_image(training_images[i], i, training_labels[i], True)
+# for i in range(-1,len(testing_images),1):
+#     save_image(testing_images[i], i, testing_labels[i], False)
+
+# for i in range(0,len(training_images)+1,1):
+#     print(i-1)

@@ -137,22 +137,26 @@ def save_image(pixel_list, index, label, train_test):
     # Saving the file and inserting the correct variables into the string for the "train/test-xxxxx-y" format.
     image.save(file_format %(index,label))
 
-# List of labels for the training images.
-training_labels = read_labels("data/train-labels-idx1-ubyte.gz")
-# List of pixels representing the training images.
-training_images = read_images("data/train-images-idx3-ubyte.gz")
-# List of labels for the testing images.
-testing_labels = read_labels("data/t10k-labels-idx1-ubyte.gz")
-# List of pixels representing the testing images.
-testing_images = read_images("data/t10k-images-idx3-ubyte.gz")
+# A try/catch to inform the user that the data files are non existent if the files fail to load.
+try:
+    # List of labels for the training images.
+    training_labels = read_labels("data/train-labels-idx1-ubyte.gz")
+    # List of pixels representing the training images.
+    training_images = read_images("data/train-images-idx3-ubyte.gz")
+    # List of labels for the testing images.
+    testing_labels = read_labels("data/t10k-labels-idx1-ubyte.gz")
+    # List of pixels representing the testing images.
+    testing_images = read_images("data/t10k-images-idx3-ubyte.gz")
 
-# Call the print_image function to print out the 3rd image to the screen
-print_image(training_images[2])
+    # Call the print_image function to print out the 3rd image to the screen
+    print_image(training_images[2])
 
-# Loop that starts at 1, the length of training/testing_images+1 and increments by 1.
-# Each iteration will save the image at the current index i - 1 (as the loop starts at 1 and ends at 60).
-for i in range(1,len(training_images)+1,1):
-    save_image(training_images[i-1], i, training_labels[i-1], True)
+    # Loop that starts at 1, the length of training/testing_images+1 and increments by 1.
+    # Each iteration will save the image at the current index i - 1 (as the loop starts at 1 and ends at 60).
+    for i in range(1,len(training_images)+1,1):
+        save_image(training_images[i-1], i, training_labels[i-1], True)
 
-for i in range(1,len(testing_images)+1,1):
-    save_image(testing_images[i-1], i, testing_labels[i-1], False)
+    for i in range(1,len(testing_images)+1,1):
+        save_image(testing_images[i-1], i, testing_labels[i-1], False)
+except:
+    print ("Trouble opening the gzip MNIST files. Make sure to run 'setup.py' before running this script.")

@@ -31,6 +31,18 @@ MNIST contains 60,000 training images and 10,000 testing images. Training images
 ### Where does the MNIST dataset come from?
 The set of images in the MNIST database is a combination of two of NIST's databases: Special Database 1 and Special Database 3. Special Database 1 and Special Database 3 consist of digits written by high school students and employees of the United States Census Bureau, respectively.[1]
 
+### Sample images from the MNIST data set
+Hold your mouse over the image to reveal the image label.
+#### Training
+![alt text](https://github.com/ImErvin/MNIST-Problem-Sheet/blob/master/images/train-00001-5.png?raw=true "Figure 5")
+![alt text](https://github.com/ImErvin/MNIST-Problem-Sheet/blob/master/images/train-00002-0.png?raw=true "Figure 0")
+![alt text](https://github.com/ImErvin/MNIST-Problem-Sheet/blob/master/images/train-00003-4.png?raw=true "Figure 4")
+
+#### Testing
+![alt text](https://github.com/ImErvin/MNIST-Problem-Sheet/blob/master/images/test-00001-7.png?raw=true "Figure 7")
+![alt text](https://github.com/ImErvin/MNIST-Problem-Sheet/blob/master/images/test-00002-2.png?raw=true "Figure 2")
+![alt text](https://github.com/ImErvin/MNIST-Problem-Sheet/blob/master/images/test-00003-1.png?raw=true "Figure 1")
+
 ### Problem Sheet Questions
 
 **1. Read the data files**

@@ -1,5 +1,5 @@
 ## MNIST Problem Sheet
-This is a simple MNIST problem sheet. The aim of this problem sheet is to get a foot in the door and start learning about computer vision. This problem sheet was created by [Ian Mcloughlin](https://github.com/ianmcloughlin) as part of our emerging technologies module in college.
+This is a simple MNIST problem sheet. The aim of this problem sheet is to get a foot in the door and start learning about deep learning. This problem sheet was created by [Ian Mcloughlin](https://github.com/ianmcloughlin) as part of our emerging technologies module in college.
 
 You can find my solutions to each of these problems in this repository.
 
